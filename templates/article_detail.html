@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Post {% endblock title %}
+
+{% block content %}
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    {% if object.photo %}
+                    <img src="{{ article.photo.url }}" alt="{{ article.title }}" class="card-img-top">
+                    {% endif %}
+                    <h1 class="card-title">{{ object.title }}</h1>
+                    <h6 class="card-subtitle mb-2 text-muted">Author: {{ object.author }} | {{ object.date }}</h6>
+                    <p class="card-text">{{ object.body | safe }}</p>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'article_edit' article.pk %}" class="btn btn-outline-primary">Edit</a>
+                        <a href="{% url 'article_delete' article.pk %}" class="btn btn-outline-danger">Delete</a> 
+                    {% endif %}
+                    <a href="{% url 'article_list' %}" class="btn btn-outline-primary">All Posts</a>
+
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Comments</div>
+                {% for comment in article.comments.all %}
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{ comment }}</p>
+                            <footer class="blockquote-footer">{{ comment.author }}</footer>
+                        </blockquote>
+                    </div>
+                {% endfor %}
+            </div>
+            <br><br>
+        </div>
+{% endblock content %}

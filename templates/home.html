@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Fred dev Blog{% endblock title %}
+
+{% block content %}
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">As-Salaam-Alaikum!</h1>
+            <p class="col-md-8 fs-4">Welcome to <a href="#">myBlog</a> Website.</p>
+            <hr class="my-4">
+            <p>You can run your own Blog - <b>here & now</b></p>
+            <p class="lead">
+                <a href="{% url 'article_list' %}" class="btn btn-primary btn-lg" role="button">Articles</a>
+            </p>
+        </div>
+    </div>
+{% endblock content %}
